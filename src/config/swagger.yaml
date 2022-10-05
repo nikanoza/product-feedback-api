@@ -23,4 +23,17 @@ paths:
                 type: array
                 items:
                   type: string 
+  /categories:
+    get:
+      tags:
+        - Categories 
+      responses:
+        '200':
+          description: Successfully fetched
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string                
                   
