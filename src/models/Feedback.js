@@ -7,8 +7,8 @@ const feedbackSchema = new Schema({
     type: Schema.Types.String,
     required: true,
   },
-  category: {
-    type: Schema.Types.String,
+  category_id: {
+    type: Schema.Types.Number,
     required: true,
   },
   status: {

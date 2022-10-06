@@ -8,5 +8,5 @@ export const getAllCategories = async (req, res) => {
       name: category.name,
     }
   })
-  return res.json(data);
+  return res.json(newData);
 };
