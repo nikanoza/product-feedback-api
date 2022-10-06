@@ -18,9 +18,9 @@ const addFeedbackSchema = async (data) => {
       "any.required": "title is required",
     }),
     description: Joi.string().min(3).required().messages({
-      "string.base": "title should be a string",
-      "string.min": "title should include 3 characters or more",
-      "any.required": "title is required",
+      "string.base": "description should be a string",
+      "string.min": "description should include 3 characters or more",
+      "any.required": "description is required",
     }),
     category_id: Joi.number().custom(checkCategory(category)).required().messages({
       "number.base": "category id should be a number",

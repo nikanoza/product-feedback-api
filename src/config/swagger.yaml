@@ -35,5 +35,42 @@ paths:
               schema:
                 type: array
                 items:
-                  type: string                
-                  
+                  type: string    
+  /status:
+    get:
+      tags:
+        - Status
+      responses:
+        '200':
+          description: Successfully fetched
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string             
+  /feedbacks/new:
+    post:
+      tags: 
+        - Feedbacks
+      requestBody:
+        description: create feedback
+        required: true
+        content: 
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                description:
+                  type: string
+                category_id: 
+                  type: number
+            example:
+              title: Node is awesome
+              description: Don't use nodemon on server    
+              category_id: 2
+      responses:
+        '200':
+          description: feedback created

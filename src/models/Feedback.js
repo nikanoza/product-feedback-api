@@ -11,8 +11,8 @@ const feedbackSchema = new Schema({
     type: Schema.Types.Number,
     required: true,
   },
-  status: {
-    type: Schema.Types.String,
+  status_id: {
+    type: Schema.Types.Number,
     required: true,
   },
   description: {

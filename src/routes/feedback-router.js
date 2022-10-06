@@ -1,9 +1,12 @@
-import express from 'express'
-import { getAllFeedbacks } from '../controllers/feedback-controller.js'
+import express from "express";
+import {
+  addFeedback,
+  getAllFeedbacks,
+} from "../controllers/feedback-controller.js";
 
-const feedbackRouter = express.Router()
+const feedbackRouter = express.Router();
 
-feedbackRouter.get('/feedbacks', getAllFeedbacks)
+feedbackRouter.get("/feedbacks", getAllFeedbacks);
+feedbackRouter.post("/feedbacks/new", addFeedback);
 
-export default feedbackRouter
-
+export default feedbackRouter;

@@ -27,7 +27,7 @@ export const addFeedback = async (req, res) => {
     description,
     category_id,
     upvotes: 0,
-    status: "suggestion",
+    status_id: 1,
     id,
   });
 
