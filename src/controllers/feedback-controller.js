@@ -3,6 +3,16 @@ import addFeedbackSchema from "../schemas/add-feedback-schema.js";
 
 export const getAllFeedbacks = async (req, res) => {
   const data = await Feedback.find();
+  const newData = data.map((feedback) => {
+    return {
+      id: feedback.id,
+      category_id: feedback.category_id,
+      status_id: feedback.status_id,
+      description: feedback.description,
+      upvotes: feedback.upvotes,
+      title: feedback.title,
+    };
+  });
   return res.json(data);
 };
 
