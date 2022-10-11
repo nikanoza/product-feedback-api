@@ -6,6 +6,7 @@ export const getAllStatus = async (req, res) => {
     return {
       id: status.id,
       name: status.name,
+      color: status.color,
     };
   });
   return res.json(newData);
