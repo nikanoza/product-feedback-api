@@ -7,6 +7,10 @@ const statusSchema = new Schema({
     type: Schema.Types.String,
     required: true,
   },
+  color: {
+    type: Schema.Types.String,
+    required: true,
+  },
   id: {
     type: Schema.Types.Number,
     required: true,
