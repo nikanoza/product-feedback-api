@@ -18,6 +18,7 @@ export const getAllFeedbacks = async (req, res) => {
 
 export const addFeedback = async (req, res) => {
   const { body } = req;
+  console.log(body);
 
   const validator = await addFeedbackSchema(body);
   const { value, error } = validator.validate(body);
@@ -32,14 +33,16 @@ export const addFeedback = async (req, res) => {
 
   const id = lastFeedback.length > 0 ? lastFeedback[0].id + 1 : 1;
 
-  await Feedback.create({
+  const newFeedback = {
     title,
     description,
     category_id,
     upvotes: 0,
     status_id: 1,
     id,
-  });
+  };
 
-  return res.status(201).json({ message: "feedback create successfully" });
+  await Feedback.create({ ...newFeedback });
+
+  return res.status(201).json({ ...newFeedback });
 };
