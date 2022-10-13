@@ -74,3 +74,26 @@ paths:
       responses:
         '200':
           description: feedback created
+  /users/new:        
+    post:
+      tags: 
+        - Users
+      requestBody:
+        description: create user
+        required: true
+        content: 
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                name: 
+                  type: string  
+                avatar:
+                  type: string
+                  format: binary
+      responses:
+        '200':
+          description: user created
+    

@@ -1,7 +1,7 @@
 import Feedback from "../models/Feedback.js";
 import addFeedbackSchema from "../schemas/add-feedback-schema.js";
 
-export const getAllFeedbacks = async (req, res) => {
+export const getAllFeedbacks = async ( _, res) => {
   const data = await Feedback.find();
   const newData = data.map((feedback) => {
     return {
