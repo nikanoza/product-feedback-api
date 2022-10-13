@@ -15,6 +15,10 @@ const userSchema = new Schema({
     type: Schema.Types.String,
     required: true,
   },
+  id: {
+    type: Schema.Types.Number,
+    required: true,
+  },
 });
 
 const User = mongoose.model("User", userSchema);

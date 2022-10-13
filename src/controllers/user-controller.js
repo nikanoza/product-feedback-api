@@ -17,7 +17,10 @@ export const getUsers = async (_, res) => {
 export const addUser = async (req, res) => {
   const { file, body } = req;
 
-  const validator = await addUserSchema({ ...body, avatar: 'images/' + file.originalname });
+  const validator = await addUserSchema({
+    ...body,
+    avatar: "images/" + file.originalname,
+  });
 
   const { value, error } = validator.validate({
     ...body,
@@ -30,10 +33,15 @@ export const addUser = async (req, res) => {
 
   const { name, username, avatar } = value;
 
+  const lastUser = await User.find().sort({ _id: -1 }).limit(1);
+
+  const id = lastUser.length > 0 ? lastUser[0].id + 1 : 1;
+
   await User.create({
     name,
     username,
     avatar,
+    id,
   });
 
   return res.status(201).json({ message: "new user created" });
