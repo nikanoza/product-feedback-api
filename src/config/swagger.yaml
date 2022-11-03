@@ -8,55 +8,55 @@ servers:
   - url: https://product-feedback-api-nikanoza.herokuapp.com/api
     description: production server
   - url: http://localhost:3000/api
-    description: local server  
+    description: local server
 paths:
   /feedbacks:
     get:
       tags:
-        - Feedbacks 
+        - Feedbacks
       responses:
-        '200':
+        "200":
           description: Successfully fetched
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  type: string 
+                  type: string
   /categories:
     get:
       tags:
-        - Categories 
+        - Categories
       responses:
-        '200':
+        "200":
           description: Successfully fetched
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  type: string    
+                  type: string
   /status:
     get:
       tags:
         - Status
       responses:
-        '200':
+        "200":
           description: Successfully fetched
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  type: string             
+                  type: string
   /feedbacks/new:
     post:
-      tags: 
+      tags:
         - Feedbacks
       requestBody:
         description: create feedback
         required: true
-        content: 
+        content:
           application/json:
             schema:
               type: object
@@ -65,25 +65,50 @@ paths:
                   type: string
                 description:
                   type: string
-                category_id: 
+                category_id:
                   type: number
             example:
               title: Node is awesome
-              description: Don't use nodemon on server    
+              description: Don't use nodemon on server
               category_id: 2
       responses:
-        '200':
+        "200":
           description: feedback created
   /users:
     get:
       tags:
         - Users
       responses:
-        '200':
+        "200":
           description: Successfully fetched
           content:
             application/json:
               schema:
                 type: array
                 items:
-                  type: string   
+                  type: string
+  /comment:
+    post:
+      tags:
+        - Comments
+      requestBody:
+        description: create comment
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                content:
+                  type: string
+                feedbackId:
+                  type: number
+                userId:
+                  type: number
+            example:
+              content: Awesome idea! Trying to find framework-specific projects within the hubs can be tedious
+              feedbackId: 1
+              userId: 2
+      responses:
+        "200":
+          description: comment created
