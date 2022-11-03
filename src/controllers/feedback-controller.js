@@ -13,12 +13,11 @@ export const getAllFeedbacks = async ( _, res) => {
       title: feedback.title,
     };
   });
-  return res.json(data);
+  return res.json(newData);
 };
 
 export const addFeedback = async (req, res) => {
   const { body } = req;
-  console.log(body);
 
   const validator = await addFeedbackSchema(body);
   const { value, error } = validator.validate(body);
