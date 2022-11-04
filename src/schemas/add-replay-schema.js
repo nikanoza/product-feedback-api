@@ -1,4 +1,5 @@
 import Joi from "joi";
+import Comment from "../models/Comment.js";
 import Feedback from "../models/Feedback.js";
 import User from "../models/User.js";
 
@@ -16,9 +17,17 @@ const determineIfFeedbackExits = (feedback) => (value, helpers) => {
   return value;
 };
 
-const addCommentSchema = async (data) => {
+const determineIfCommentExists = (comment) => (value, helpers) => {
+  if (!comment) {
+    return helpers.message("there is no comment with this id");
+  }
+  return value;
+};
+
+const addReplaySchema = async (data) => {
   const user = await User.findOne({ id: data.userId });
   const feedback = await Feedback.findOne({ id: data.feedbackId });
+  const comment = await Comment.findOne({ id: data.commentId });
   return Joi.object({
     content: Joi.string().min(4).required().messages({
       "string.base": "content should be a string",
@@ -32,6 +41,13 @@ const addCommentSchema = async (data) => {
         "number.base": "feedback id should be a number",
         "any.required": "feedback id is required",
       }),
+    commentId: Joi.number()
+      .custom(determineIfCommentExists(comment))
+      .required()
+      .messages({
+        "number.base": "comment id should be a number",
+        "any.required": "comment id is required",
+      }),
     userId: Joi.number()
       .custom(determineIfUserExists(user))
       .required()
@@ -42,4 +58,4 @@ const addCommentSchema = async (data) => {
   });
 };
 
-export default addCommentSchema;
+export default addReplaySchema;
