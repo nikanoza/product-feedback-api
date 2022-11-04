@@ -1,4 +1,5 @@
 import Comment from "../models/Comment.js";
+import Feedback from "../models/Feedback.js";
 import Replay from "../models/Replay.js";
 import addCommentSchema from "../schemas/add-comment-schema.js";
 import addReplaySchema from "../schemas/add-replay-schema.js";
@@ -23,7 +24,10 @@ export const addComment = async (req, res) => {
   };
 
   await Comment.create({ ...newComment });
-
+  const feedback = await Feedback.findOne({ id: feedbackId });
+  await feedback.update({
+    commentAmount: feedback.commentAmount + 1,
+  });
   return res.status(201).json({ ...newComment });
 };
 
@@ -36,13 +40,14 @@ export const addReplay = async (req, res) => {
     return res.status(401).json(error.details);
   }
 
-  const { content, feedbackId, userId, commentId } = data;
+  const { content, feedbackId, userId, commentId, replyingTo } = data;
 
   const lastReplay = await Replay.find().sort({ _id: -1 }).limit(1);
   const id = lastReplay.length > 0 ? lastReplay[0].id + 1 : 1;
 
   const newReplay = {
     content,
+    replyingTo,
     feedbackId,
     commentId,
     userId,
@@ -50,6 +55,9 @@ export const addReplay = async (req, res) => {
   };
 
   await Replay.create({ ...newReplay });
-
+  const feedback = await Feedback.findOne({ id: feedbackId });
+  await feedback.update({
+    commentAmount: feedback.commentAmount + 1,
+  });
   return res.status(201).json({ ...newReplay });
 };

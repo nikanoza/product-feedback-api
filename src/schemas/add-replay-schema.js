@@ -34,6 +34,10 @@ const addReplaySchema = async (data) => {
       "string.min": "content should include 4 characters or more",
       "any.required": "content is required",
     }),
+    replyingTo: Joi.string().required().messages({
+      "string.base": "content should be a string",
+      "any.required": "content is required",
+    }),
     feedbackId: Joi.number()
       .custom(determineIfFeedbackExits(feedback))
       .required()

@@ -19,6 +19,10 @@ const feedbackSchema = new Schema({
     type: Schema.Types.String,
     required: true,
   },
+  commentAmount: {
+    type: Schema.Types.Number,
+    required: true,
+  },
   upvotes: {
     type: Schema.Types.Number,
     required: true,
@@ -29,8 +33,6 @@ const feedbackSchema = new Schema({
   },
 });
 
-const Feedback = mongoose.model('Feedback', feedbackSchema)
+const Feedback = mongoose.model("Feedback", feedbackSchema);
 
-export default Feedback
-
-
+export default Feedback;

@@ -1,7 +1,7 @@
 import Feedback from "../models/Feedback.js";
 import addFeedbackSchema from "../schemas/add-feedback-schema.js";
 
-export const getAllFeedbacks = async ( _, res) => {
+export const getAllFeedbacks = async (_, res) => {
   const data = await Feedback.find();
   const newData = data.map((feedback) => {
     return {
@@ -10,6 +10,7 @@ export const getAllFeedbacks = async ( _, res) => {
       status_id: feedback.status_id,
       description: feedback.description,
       upvotes: feedback.upvotes,
+      commentAmount: feedback.commentAmount,
       title: feedback.title,
     };
   });
@@ -37,6 +38,7 @@ export const addFeedback = async (req, res) => {
     description,
     category_id,
     upvotes: 0,
+    commentAmount: 0,
     status_id: 1,
     id,
   };
