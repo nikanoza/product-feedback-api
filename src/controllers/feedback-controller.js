@@ -91,7 +91,7 @@ export const getSingleFeedback = async (req, res) => {
     status_id: feedback.status_id,
     description: feedback.description,
     commentAmount: feedback.commentAmount,
-    upvotes: feedback.update,
+    upvotes: feedback.upvotes,
     id: feedback.id,
     comments: newComments,
   };
