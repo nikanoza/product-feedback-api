@@ -1,4 +1,6 @@
+import Comment from "../models/Comment.js";
 import Feedback from "../models/Feedback.js";
+import Replay from "../models/Replay.js";
 import addFeedbackSchema from "../schemas/add-feedback-schema.js";
 
 export const getAllFeedbacks = async (_, res) => {
@@ -46,4 +48,42 @@ export const addFeedback = async (req, res) => {
   await Feedback.create({ ...newFeedback });
 
   return res.status(201).json({ ...newFeedback });
+};
+
+export const getSingleFeedback = async (req, res) => {
+  const { id } = req.params;
+  const feedback = await Feedback.findOne({ id: +id });
+
+  if (!feedback) {
+    return res
+      .status(401)
+      .json({ message: "there is no feedback with this id" });
+  }
+
+  const comments = await Comment.find({ feedbackId: +id });
+  const allReplies = await Replay.find();
+  const newComments = comments.map((comment) => {
+    const replies = allReplies.filter(
+      (replay) => replay.commentId === comment.id
+    );
+    const newReplies = replies.map((replay) => {
+      return {
+        content: replay.content,
+        replyingTo: replay.replyingTo,
+        feedbackId: replay.feedbackId,
+        commentId: replay.commentId,
+        userId: replay.userId,
+        id: replay.id,
+      };
+    });
+    return {
+      content: comment.content,
+      feedbackId: comment.feedbackId,
+      userId: comment.userId,
+      id: comment.id,
+      replies: newReplies,
+    };
+  });
+
+  return res.status(200).json(newComments);
 };

@@ -23,6 +23,26 @@ paths:
                 type: array
                 items:
                   type: string
+  /feedbacks/{id}:
+    get:
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: number
+            example: 1
+          required: true
+      tags:
+        - Feedbacks
+      responses:
+        "200":
+          description: Successfully fetched
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
   /categories:
     get:
       tags:
