@@ -85,5 +85,16 @@ export const getSingleFeedback = async (req, res) => {
     };
   });
 
-  return res.status(200).json(newComments);
+  const newFeedback = {
+    title: feedback.title,
+    category_id: feedback.category_id,
+    status_id: feedback.status_id,
+    description: feedback.description,
+    commentAmount: feedback.commentAmount,
+    upvotes: feedback.update,
+    id: feedback.id,
+    comments: newComments,
+  };
+
+  return res.status(200).json(newFeedback);
 };
