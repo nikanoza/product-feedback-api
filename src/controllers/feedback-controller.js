@@ -2,6 +2,7 @@ import Comment from "../models/Comment.js";
 import Feedback from "../models/Feedback.js";
 import Replay from "../models/Replay.js";
 import addFeedbackSchema from "../schemas/add-feedback-schema.js";
+import updateFeedbackSchema from "../schemas/update-feedback-schema.js";
 
 export const getAllFeedbacks = async (_, res) => {
   const data = await Feedback.find();
@@ -97,4 +98,29 @@ export const getSingleFeedback = async (req, res) => {
   };
 
   return res.status(200).json(newFeedback);
+};
+
+export const updateFeedback = async (req, res) => {
+  const { body } = req;
+
+  const validator = await updateFeedbackSchema(body);
+  const { value, error } = validator.validate(body);
+
+  if (error) {
+    return res.status(401).json(error.details);
+  }
+
+  const { title, description, category_id, status_id, id } = value;
+
+  await Feedback.findOneAndUpdate(
+    { id },
+    {
+      title,
+      description,
+      category_id,
+      status_id,
+    }
+  );
+
+  return res.status(200).json({ message: "feedback updated successfully" });
 };
