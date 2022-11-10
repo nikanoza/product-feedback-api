@@ -124,3 +124,18 @@ export const updateFeedback = async (req, res) => {
 
   return res.status(200).json({ message: "feedback updated successfully" });
 };
+
+export const deleteFeedback = async (req, res) => {
+  const { id } = req.params;
+
+  const feedback = await Feedback.findOne({ id: +id });
+  if (!feedback) {
+    return res
+      .status(401)
+      .json({ message: "there is no feedback with this id" });
+  }
+
+  await feedback.delete();
+
+  return res.status(200).json({ message: "feedback deleted successfully" });
+};
