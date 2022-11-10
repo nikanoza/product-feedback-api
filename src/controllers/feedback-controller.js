@@ -136,6 +136,8 @@ export const deleteFeedback = async (req, res) => {
   }
 
   await feedback.delete();
+  await Comment.deleteMany({ feedbackId: +id });
+  await Replay.deleteMany({ feedbackId: +id });
 
   return res.status(200).json({ message: "feedback deleted successfully" });
 };

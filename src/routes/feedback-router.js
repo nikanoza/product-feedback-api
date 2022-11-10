@@ -1,6 +1,7 @@
 import express from "express";
 import {
   addFeedback,
+  deleteFeedback,
   getAllFeedbacks,
   getSingleFeedback,
   updateFeedback,
@@ -12,5 +13,6 @@ feedbackRouter.get("/feedbacks", getAllFeedbacks);
 feedbackRouter.get("/feedbacks/:id", getSingleFeedback);
 feedbackRouter.post("/feedbacks/new", addFeedback);
 feedbackRouter.put("/feedback", updateFeedback);
+feedbackRouter.delete("/feedbacks/:id", deleteFeedback);
 
 export default feedbackRouter;

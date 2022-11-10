@@ -43,6 +43,19 @@ paths:
                 type: array
                 items:
                   type: string
+    delete:
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: number
+            example: 1
+          required: true
+      tags:
+        - Feedbacks
+      responses:
+        "200":
+          description: feedback deleted
   /categories:
     get:
       tags:
