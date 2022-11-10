@@ -94,6 +94,37 @@ paths:
       responses:
         "200":
           description: feedback created
+  /feedback:
+    put:
+      tags:
+        - Feedbacks
+      requestBody:
+        description: update feedback
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                description:
+                  type: string
+                category_id:
+                  type: number
+                status_id:
+                  type: number
+                id:
+                  type: number
+            example:
+              title: Node is awesome
+              description: Don't use nodemon on server
+              category_id: 2
+              status_id: 3
+              id: 3
+      responses:
+        "200":
+          description: feedback created
   /users:
     get:
       tags:
