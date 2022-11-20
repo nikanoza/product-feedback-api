@@ -25,7 +25,7 @@
 - <img src="./readme/mongoDB.png" width="25" style="top: 8px" /> mongodb @ 4.10.0 - document database
 - <img src="./readme/mongoose.png" width="25" style="top: 8px" /> mongoose @ 6.6.3 - MongoDB object modeling tool
 - <img src="./readme/Swagger-logo.png" width="25" style="top: 8px" /> swagger @ 4.5.1 - module provides tools for designing and building Swagger-compliant APIs entirely in Node.js
-- <img src="./readme/mongoose.png" width="25" style="top: 8px" /> yaml @ 0.3.0 - yaml is a definitive library for YAML, the human friendly data serialization standard
+- <img src="./readme/Swagger-logo.png" width="25" style="top: 8px" /> yaml @ 0.3.0 - yaml is a definitive library for YAML, the human friendly data serialization standard
 
 #
 
