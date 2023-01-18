@@ -5,7 +5,7 @@ info:
   version: 0.1.9
 
 servers:
-  - url: https://product-feedback-api-nika.herokuapp.com/api
+  - url: https://web-production-ec13.up.railway.app/api
     description: production server
   - url: http://localhost:3000/api
     description: local server
